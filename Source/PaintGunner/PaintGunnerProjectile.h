@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "Particles/ParticleSystem.h"
 #include "PaintGunnerProjectile.generated.h"
 
 class USphereComponent;
@@ -33,5 +34,8 @@ public:
 	USphereComponent* GetCollisionComp() const { return CollisionComp; }
 	/** Returns ProjectileMovement subobject **/
 	UProjectileMovementComponent* GetProjectileMovement() const { return ProjectileMovement; }
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UParticleSystem> SplatEffect;
 };
 
