@@ -4,6 +4,8 @@
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Components/SphereComponent.h"
 #include "Kismet/GameplayStatics.h"
+#include "Kismet/KismetMathLibrary.h"
+#include "Components/SceneComponent.h"
 
 APaintGunnerProjectile::APaintGunnerProjectile() 
 {
@@ -44,4 +46,7 @@ void APaintGunnerProjectile::OnHit(UPrimitiveComponent* HitComp, AActor* OtherAc
 
 	UGameplayStatics::SpawnEmitterAtLocation(this, SplatEffect, GetActorLocation());
 	Destroy();
+	FRotator DecalRotation = UKismetMathLibrary::MakeRotFromX(Hit.ImpactNormal) + UKismetMathLibrary::MakeRotator(UKismetMathLibrary::RandomFloatInRange(0.f, 360.f), 0.f, 0.f);
+	UGameplayStatics::SpawnDecalAttached(SplatDecal, SplatDecalSize, OtherComp, FName(""), GetActorLocation(), 
+										DecalRotation, EAttachLocation::KeepWorldPosition);
 }

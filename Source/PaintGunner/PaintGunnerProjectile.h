@@ -5,6 +5,7 @@
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
 #include "Particles/ParticleSystem.h"
+#include "Materials/MaterialInterface.h"
 #include "PaintGunnerProjectile.generated.h"
 
 class USphereComponent;
@@ -37,5 +38,11 @@ public:
 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<UParticleSystem> SplatEffect;
+
+	UPROPERTY(EditAnywhere)
+	TObjectPtr<UMaterialInterface> SplatDecal;
+
+	UPROPERTY(EditAnywhere)
+	FVector SplatDecalSize = FVector(-30.f, 200.f, 200.f);
 };
 
